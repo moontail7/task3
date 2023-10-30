@@ -37,3 +37,23 @@ class Event(db.Model):
         return f"Name: {self.name}"
     
     # Additional methods as needed
+    
+# Booking model for storing booking information
+class Booking(db.Model):
+    __tablename__ = 'bookings'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+    quantity = db.Column(db.Integer)
+    ticket_type = db.Column(db.String(30))
+    booking_reference = db.Column(db.String(50))
+    is_history = db.Column(db.Boolean, default=False)  
+    event = db.relationship('Event', backref='bookings')
+
+    def __init__(self, user_id, event_id, quantity, ticket_type, booking_reference, is_history=False):
+        self.user_id = user_id
+        self.event_id = event_id
+        self.quantity = quantity
+        self.ticket_type = ticket_type
+        self.booking_reference = booking_reference
+        self.is_history = is_history  # Set is_history to False by default for new bookings
