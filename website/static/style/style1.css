@@ -1,0 +1,190 @@
+body {
+    font-family: 'Manrope', sans-serif
+  }
+  
+  p {
+    font-size: 14px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .nowtrending-text {
+      font-size: 24px;
+    }
+    
+    .nav-btn {
+      background-color: transparent;
+      border: none;
+    }
+    
+    .custom-link {
+      color: black;
+      text-decoration: none;
+    }
+    
+    .custom-link:hover {
+      color: rgb(0, 115, 255);
+    }
+    
+    .green-button {
+      background-color: rgb(0, 173, 0) !important;
+      font-weight: bold;
+      padding: 15px;
+      color: white;
+      border: none;
+    }
+  
+    .create-button {
+      background-color: rgb(30, 30, 255) !important;
+      font-weight: bold;
+      padding: 15px;
+      color: white;
+      border: none;
+    }
+    
+    .ticket-button a {
+      color: white;
+      text-decoration: none;
+    }
+    
+    .header-jumbotron {
+      background-color: #222222;
+      color: white;
+      margin-bottom: 20px;
+      padding: 2rem 1rem;
+    }
+    
+  .custom-card {
+    padding: 20px;
+  }
+  
+  .custom-card + .custom-card {
+    margin-top: 20px;
+  }
+  
+  .sold-out-button {
+    background-color: #555555;
+    color: white;
+    font-weight: bold;
+    cursor: not-allowed;
+  }
+  
+  .card-title {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .bold-text {
+    font-weight: bold;
+  }
+  
+  .register-button {
+    background-color: grey;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .register-button:hover {
+    background-color: blue;
+    color: white;
+  }
+  
+  .text-justify {
+    text-align: justify;
+  }
+  
+  .info-heading {
+    margin-bottom: 30px;
+  }
+  
+  .view-ticket-button {
+    background-color: rgb(20, 199, 0);
+    color: white;
+  }
+  
+  .view-ticket-button:hover {
+    background-color: rgb(18, 176, 0);
+    color: white;
+  }
+  
+  .remove-button {
+    background-color: rgb(200, 0, 0);
+    color: white;
+  }
+  
+  .remove-button:hover {
+    background-color: rgb(151, 0, 0);
+    color: white;
+  }
+  
+  .hr {
+    padding: 10px;
+  }
+  
+  .coloured-jumbotron {
+    background: radial-gradient(circle, #ffd651, #d21145);
+  }
+  
+  .coloured-jumbotron-2 {
+    background: radial-gradient(circle, #2b2b2b, #121212);
+  }
+  
+  .custom-dropdown-button {
+    background-color: white;
+    color: black;
+    border: none;
+  }
+  
+  .custom-footer {
+    background: radial-gradient(circle, #2b2b2b, #121212);
+    color: white;
+    padding: 10px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .image-container {
+    overflow: hidden; /* Hide overflowing content */
+    display: flex; /* Enable flex layout */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  .image-container img {
+    width: 100%; /* Fill the entire container horizontally */
+    height: 100%; /* Fill the entire container vertically */
+    object-fit: cover; /* Scale and crop the image to fill the container */
+  }
+  
+  /* Add styling for the dropdown box */
+  .select-box {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 8px;
+    width: 150px; /* Adjust the width to your preference */
+    font-size: 16px;
+    color: #333333;
+  }
+  
+  /* Style the dropdown arrow icon */
+  .select-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #333333;
+  }
+  
+  /* Style the selected option in the dropdown */
+  .select-box option[selected] {
+    background-color: #eeeeee;
+    font-weight: bold;
+  }
+  
+  /* Style the dropdown on hover or focus */
+  .select-box:hover, .select-box:focus {
+    border-color: #0073ff;
+    box-shadow: 0 0 5px rgba(0, 115, 255, 0.5);
+  }
+  
+  
+  
