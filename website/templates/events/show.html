@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+
+<div class="container mt-4">  
+    <div class="row">  
+      <div class="col-md-12">
+        <div class="image-container">
+            <img class="align-self-start mr-3" src="{{ event.image }}">
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12">
+          <h2 class="info-heading">{{ event.name }}</h2>
+          <p class="info-heading"><strong>Date:</strong>{{ event.date }}</p>
+          <p class="info-heading"><strong>Venue:</strong>{{ event.venue }}</p>
+          <p class="text-justify">{{ event.description }}</p>
+          <hr>
+        </div>
+      </div>
+
+      <!-- New Ticket Selection Section -->
+      <div class="row mt-4">
+        <div class="col-12">
+          <h2>Select Your Tickets</h2>
+        </div>
+        
+
+        <!-- Adult General Admission Ticket -->
+        <form method="POST" action="{{ url_for('event.book', id=event.id) }}">
+          {{ render_form(booking_form) }}
+      </form>
+      
+      
+      </div> 
+ 
+    
+    <!-- Comments -->  
+    <div class="row">  
+      <div class="col-md-12">  
+        <h2>Comments</h1>  
+      </div>  
+    </div>  
+ 
+    <div class="row border-bottom"> 
+      {{ render_form(form,"/events/{0}/comment".format(event.id)) }}
+      
+      {% for comment in event.comments %}
+      <div class="col-md-12">  
+        <b>{{ comment.user.name }} <span class="ml-2 text-muted"></span></b>
+        <p>{{ comment.text }}</p>  
+      </div> 
+      {% endfor %} 
+    </div>  
+  </div> 
+
+{% endblock %}
