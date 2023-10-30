@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% import "bootstrap5/form.html" as wtf %}
+
+{% block content %}
+  <div class="container"> 
+    <h1>Your Booking History</h1>
+    <!-- Booking History Table -->
+    <div class="row mt-3">
+      <!-- Table Headers -->
+      <div class="col-md-4 col-12"><strong>Event Name</strong></div>
+      <div class="col-md-2 col-12"><strong>Booking ID</strong></div>
+      <div class="col-md-3 col-12"><strong>Event Date</strong></div>
+      <div class="col-md-2 col-12"><strong>Ticket Type</strong></div>
+      <div class="col-md-1 col-12"><strong>Actions</strong></div>
+    </div>
+
+    <!-- Booking Rows -->
+    {% for booking in user_bookings %}
+      <div class="row mt-3 flex-md-row flex-column align-items-md-center">
+        <div class="col-md-4 col-12">
+          {{ booking.event.name }}
+        </div>
+        <div class="col-md-2 col-12">
+          {{ booking.booking_reference }}
+        </div>
+        <div class="col-md-3 col-12">
+          {{ booking.event.date }}
+        </div>
+        <div class="col-md-2 col-12">
+          {{ booking.ticket_type }} ({{ booking.quantity }})
+        </div>
+        <div class="col-md-1 col-12 text-center">
+          <button class="btn btn-primary">Invoice</button>
+        </div>
+        <hr>
+      </div>
+    {% else %}
+      <div class="row mt-3">
+        <div class="col-12">
+          <p>No bookings found.</p>
+        </div>
+      </div>
+    {% endfor %}
+
+  
+   
+    <h1>Your Created Events</h1>
+    <div class="row mt-3">
+      <!-- Table Headers for Events -->
+      <div class="col-md-4 col-12"><strong>Event Name</strong></div>
+      <div class="col-md-2 col-12"><strong>Description</strong></div>
+      <div class="col-md-3 col-12"><strong>Event Date</strong></div>
+      <div class="col-md-2 col-12"><strong>Status</strong></div>
+      <div class="col-md-1 col-12"><strong>Actions</strong></div>
+    </div>
+
+    <!-- Event Rows -->
+    {% for event in user_events %}
+      <div class="row mt-3 flex-md-row flex-column align-items-md-center">
+        <div class="col-md-4 col-12">
+          {{ event.name }}
+        </div>
+        <div class="col-md-2 col-12">
+          {{ event.description }}
+        </div>
+        <div class="col-md-3 col-12">
+          {{ event.date }}
+        </div>
+        <div class="col-md-2 col-12">
+          {{ event.status }}
+        </div>
+        <div class="col-md-1 col-12 text-center">
+          <a href="{{ url_for('event.show', id=event.id) }}" class="btn btn-primary">View</a>
+        </div>
+        <hr>
+      </div>
+    {% else %}
+      <div class="row mt-3">
+        <div class="col-12">
+          <p>No events found.</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
