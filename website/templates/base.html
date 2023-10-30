@@ -47,7 +47,7 @@
             <title>RAGETIX | Home</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
             <link href="../static/style/style1.css" rel="stylesheet">
-            <link rel="icon" href="../static/image/ragetix-logo-icon.png" type="png">
+            <link rel="icon" href="../static/image/ragetix-logo-icon.png" type="png"> 
           </head>
         
           <body class="mb-4"> <!--Margin for Body-->
@@ -73,18 +73,14 @@
             <!-- Navigation Bar -->
             <div class="container mb-5">
               <div class="row justify-content-center">
-                <div class="col-3 text-center">
+                <div class="col-4 text-center">
                   <button type="button" class="btn nav-btn"><a href="/" class="custom-link">HOME</a></button>
                 </div>
-                <div class="col-3 text-center">
-                  <button type="button" class="btn nav-btn btn-block"><a href="#" class="custom-link">EVENT DETAILS</a></button>
-                </div>
-                <div class="col-3 text-center">
+                <div class="col-4 text-center">
                   <button type="button" class="btn nav-btn btn-block"><a href="{{ url_for('event.create') }}" class="custom-link">CREATE AN EVENT</a></button>
                 </div>
-                <div class="col-3 text-center">
+                <div class="col-4 text-center">
                   <button type="button" class="btn nav-btn btn-block"><a href="{{ url_for('event.booking_history') }}" class="custom-link">BOOKING HISTORY</a></button>
-                </div>
                 </div>
               </div>
             </div>
