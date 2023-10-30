@@ -22,3 +22,20 @@ def search():
         return render_template('index.html', events=events)
     else:
         return redirect(url_for('main.index'))
+
+@mainbp.route('/sort', methods=['GET', 'POST'])
+def sort():
+    sort_by = request.form.get('sort_by', 'default')
+
+    if sort_by == 'open':
+        events = db.session.query(Event).filter(Event.status == 'open').order_by(Event.status).all()
+    elif sort_by == 'cancelled':
+        events = db.session.query(Event).filter(Event.status == 'cancelled').order_by(Event.status).all()
+    elif sort_by == 'soldout':
+        events = db.session.query(Event).filter(Event.status == 'soldout').order_by(Event.status).all()
+    elif sort_by == 'inactive':
+        events = db.session.query(Event).filter(Event.status == 'inactive').order_by(Event.status).all()
+    else:
+        events = db.session.query(Event).filter(Event.status == 'open').all()
+
+    return render_template('index.html', events=events, sort_by=sort_by)    
