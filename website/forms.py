@@ -41,3 +41,14 @@ class RegisterForm(FlaskForm):
 class CommentForm(FlaskForm):
     text = TextAreaField('Comment', [InputRequired()])
     submit = SubmitField('Create')
+    
+# Form for buying tickets
+class BookingForm(FlaskForm):
+    TICKET_TYPES = [
+        ('standard', 'Standard Ticket'),
+        ('vip', 'VIP Ticket'),
+        ('group', 'Group Ticket'),
+    ]
+    ticket_quantity = IntegerField('Number of Tickets', validators=[NumberRange(min=1, message='Please select at least 1 ticket')])
+    ticket_type = SelectField('Ticket Type', choices=TICKET_TYPES)
+    submit = SubmitField('Book Tickets')
