@@ -57,3 +57,19 @@ class Booking(db.Model):
         self.ticket_type = ticket_type
         self.booking_reference = booking_reference
         self.is_history = is_history  # Set is_history to False by default for new bookings
+    
+        
+# Comment model for storing user comments
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(400))  # Comment text
+    created_at = db.Column(db.DateTime, default=datetime.now())  # Comment creation timestamp
+    image = db.Column(db.String(400))  # Comment image
+    date = db.Column(db.String(10))  # Comment date
+    status = db.Column(db.String(30))  # Comment status
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))  # Foreign key to link to the user
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))  # Foreign key to link to the event
+
+    def __repr__(self):
+        return f"Comment: {self.text}"
