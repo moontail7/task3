@@ -1,47 +1,54 @@
-#import flask - from the package import class
-from flask import Flask 
+from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_bcrypt import Bcrypt
 
+# Initialize SQAlchemy
 db = SQLAlchemy()
 
-#create a function that creates a web application
-# a web server will run this web application
-def create_app():
-  
-    app = Flask(__name__)  # this is the name of the module/package that is calling this app
-    # Should be set to false in a production environment
-    app.debug = True
-    app.secret_key = 'somesecretkey'
-    #set the app configuration data 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sitedata.sqlite'
-    #initialize db with flask app
-    db.init_app(app)
+#Create a function to create a web application.
+#And a web server to run the web application.
 
+def create_app():
+    
+    app = Flask(__name__) # This is the name of the module / package that is calling the APP
+    
+    app.debug = True
+    # Set the secret key for the app
+    app.secret_key = 'somesecretgoeshere'
+    
+    # Initialize Bootstrap for the app
     Bootstrap5(app)
     
-    #initialize the login manager
-    login_manager = LoginManager()
+    # Configure the SQLAlchemy database URI
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///website4143.sqlite'
     
-    # set the name of the login function that lets user login
-    # in our case it is auth.login (blueprintname.viewfunction name)
-    login_manager.login_view = 'auth.login'
+    # Initialize the SQLAlchemy database with the app
+    db.init_app(app)
+
+    # Define the upload folder for static files
+    UPLOAD_FOLDER = '/static/image'
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+    # Initialize the LoginManager for user authentication
+    login_manager = LoginManager()
+    login_manager.login_view = 'auth.login'  # Set the login view
     login_manager.init_app(app)
 
-    # create a user loader function takes userid and returns User
-    # Importing inside the create_app function avoids circular references
-    from .models import User
+    # Define a user loader function for LoginManager
+    from .models import User  # Import the User model
     @login_manager.user_loader
     def load_user(user_id):
-       return User.query.get(int(user_id))
+        return User.query.get(int(user_id))
 
-    #importing views module here to avoid circular references
-    # a commonly used practice.
+    # Register Blueprints for different parts of the application
     from . import views
-    app.register_blueprint(views.main_bp)
-
+    app.register_blueprint(views.mainbp)  # Main Blueprint
+    from . import events
+    app.register_blueprint(events.bp)  # Events Blueprint
     from . import auth
-    app.register_blueprint(auth.auth_bp)
+    app.register_blueprint(auth.bp)  # Authentication Blueprint
     
+
     return app
