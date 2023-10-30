@@ -9,9 +9,7 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)  # User's name
     emailid = db.Column(db.String(100), index=True, nullable=False)  # User's email
     password_hash = db.Column(db.String(255), nullable=False)  # Hashed password
-    
     comments = db.relationship('Comment', backref='user')  # Relationship to comments
-    
     # Relationship to events created by the user
     events_created = db.relationship('Event', backref='creator', lazy='dynamic')
 
