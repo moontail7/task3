@@ -21,7 +21,7 @@ def search():
         events = db.session.query(Event).filter(Event.description.like(query)).all()
         return render_template('index.html', events=events)
     else:
-        return redirect(url_for('404.html'))
+        return redirect(url_for('main.index'))
 
 @mainbp.route('/sort', methods=['GET', 'POST'])
 def sort():
