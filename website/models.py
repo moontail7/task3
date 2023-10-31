@@ -62,7 +62,7 @@ class Comment(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(400))  # Comment text
-    created_at = db.Column(db.DateTime, default=datetime.now())  # Comment creation timestamp
+    created_at = db.Column(db.DateTime, default=datetime.now)  # fixed: removed the parentheses
     image = db.Column(db.String(400))  # Comment image
     date = db.Column(db.String(10))  # Comment date
     status = db.Column(db.String(30))  # Comment status

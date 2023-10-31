@@ -49,11 +49,13 @@
       
       {% for comment in event.comments %}
       <div class="col-md-12">  
-        <b>{{ comment.user.name }} <span class="ml-2 text-muted"></span></b>
+        <b>{{ comment.user.name }}</b> @
+        <span class="text-success h5">{{ comment.created_at.strftime('%H:%M') }}</span>
+        <span class="text-muted">{{ comment.created_at.strftime('%Y-%m-%d') }}</span>
         <p>{{ comment.text }}</p>  
       </div> 
       {% endfor %} 
     </div>  
-  </div> 
-
-{% endblock %}
+    </div> 
+    
+    {% endblock %}
