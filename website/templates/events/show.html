@@ -4,22 +4,22 @@
 
 {% block content %}
 
-<div class="container mt-4">  
-    <div class="row">  
+<div class="container mt-4">
+  <div class="row">
       <div class="col-md-12">
-        <div class="image-container">
-            <img class="align-self-start mr-3" src="{{ event.image }}">
-        </div>
+          <div class="event-card">
+              <div class="image-container">
+                  <img src="{{ event.image }}" alt="{{ event.name }}">
+              </div>
+              <div class="card-body">
+                  <h2 class="card-title">{{ event.name }}</h2>
+                  <p class="card-text"><strong>Date:</strong> {{ event.date }}</p>
+                  <p class="card-text"><strong>Venue:</strong> {{ event.venue }}</p>
+                  <p class="card-text text-justify">{{ event.description }}</p>
+              </div>
+          </div>
       </div>
-      <div class="row mt-4">
-        <div class="col-12">
-          <h2 class="info-heading">{{ event.name }}</h2>
-          <p class="info-heading"><strong>Date:</strong>{{ event.date }}</p>
-          <p class="info-heading"><strong>Venue:</strong>{{ event.venue }}</p>
-          <p class="text-justify">{{ event.description }}</p>
-          <hr>
-        </div>
-      </div>
+  </div>
 
       <!-- New Ticket Selection Section -->
       <div class="row mt-4">
