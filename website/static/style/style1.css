@@ -156,7 +156,7 @@ body {
     align-items: center; /* Center vertically */
   }
   .image-container img {
-    width: 50%; /* Fill the entire container horizontally */
+    width: 100%; /* Fill the entire container horizontally */
     height: auto; /* Fill the entire container vertically */
     object-fit: cover; /* Scale and crop the image to fill the container */
   }
