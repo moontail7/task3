@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <h1>Edit Your Event</h1>
+        <p>Please update the following details of your event.</p>
+        <form method="POST" enctype="multipart/form-data">
+          {{ render_form(form) }}
+          <div>
+            <input type="submit" value="Update Event" class="btn btn-primary">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
