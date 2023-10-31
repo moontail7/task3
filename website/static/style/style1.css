@@ -4,8 +4,8 @@ body {
   
   p {
     font-size: 14px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   
   .nowtrending-text {
@@ -192,69 +192,56 @@ body {
     border-color: #0073ff;
     box-shadow: 0 0 5px rgba(0, 115, 255, 0.5);
   }
-  
-  /* Make the Event Card Nice */
+  /* jacob ccs lmao */
+
   .event-card {
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: 30px;
-}
-
-.event-image {
-  position: relative;
-  width: 100%;
-  padding-bottom: 100%; /* 1:1 Aspect Ratio */
-  overflow: hidden; 
-}
-
-.event-card {
-  border: 3px solid #ececec3a; 
-  border-radius: 15px; 
-  box-shadow: 0 0 15px rgba(253, 253, 253, 0.5); 
-  background-color: rgba(253, 252, 252, 0.8); 
-  margin-bottom: 20px; 
-  color: rgb(5, 5, 5);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  height: [Desired total height of the card];
-}
-.event-card .card-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.event-card h3.card-title {
-  max-height: 20px; 
-}
-
-.event-card .card-text.description {
-  max-height: 20px; 
-}
-
-.event-image {
-  border: px solid white;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  width: 100%; 
-  height: 300px; 
-  object-fit: cover; 
-  position: relative;
-  padding-bottom: 100%; /* 1:1 Aspect Ratio */
-  overflow: hidden; 
-}
-
-.btn-info:hover, .btn-success:hover {
-  opacity: 1;
-  border: 3svh;
-  margin-top: auto; /* Push the button to the bottom */
+    border: 3px solid #ececec3a; 
+    border-radius: 15px; 
+    box-shadow: 0 0 15px rgba(253, 253, 253, 0.5); 
+    background-color: rgba(253, 252, 252, 0.8); 
+    margin-bottom: 20px; 
+    color: rgb(5, 5, 5);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 450px;
   }
-  
+  .event-card .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 
-.event-card:hover {
-  transform: scale(1.02);
-  transition: transform .1s ease-in-out;
-  box-shadow: 0 4px 4px rgba(255, 251, 251, 0.1);
-}
+  .btn-info {
+    margin-top: auto; /* Push the button to the bottom */
+  }
+
+  .event-card h3.card-title {
+    max-height: 20px;
+  }
+
+
+  .event-card .card-text.description {
+    max-height: 20px;
+  }
+
+  .event-image {
+    border: px solid white;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+  }
+
+  .btn-info:hover, .btn-success:hover {
+    opacity: 1;
+    border: 3svh;
+    
+  }
+
+  .event-card:hover {
+    transform: scale(1.02);
+    transition: transform .1s ease-in-out;
+    box-shadow: 0 4px 4px rgba(255, 251, 251, 0.1);
+  }
