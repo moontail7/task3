@@ -52,3 +52,19 @@ class BookingForm(FlaskForm):
     ticket_quantity = IntegerField('Number of Tickets', validators=[NumberRange(min=1, message='Please select at least 1 ticket')])
     ticket_type = SelectField('Ticket Type', choices=TICKET_TYPES)
     submit = SubmitField('Book Tickets')
+
+class EditEventForm(FlaskForm):
+    STATUS_LIST = [
+        ('open', 'Open'),
+        ('inactive', 'Inactive'),
+        ('soldout', 'Sold Out'),
+        ('cancelled', 'Event Cancelled'),
+    ]
+
+    name = StringField('Event Name', validators=[InputRequired()])
+    description = TextAreaField('Event Description', validators=[InputRequired()])
+    venue = TextAreaField('Event Venue', validators=[InputRequired()])
+    date = TextAreaField('Event Date', validators=[InputRequired()])
+    status = SelectField('Event Status', choices=STATUS_LIST)
+    image = FileField('Update Event Image', validators=[FileAllowed(ALLOWED_FILE, 'Images only!')])
+    submit = SubmitField("Update Event")
