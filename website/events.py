@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from .models import Event, Comment, Booking
-from .forms import EventForm, CommentForm, BookingForm
+from .forms import EventForm, CommentForm, BookingForm, EditEventForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
+from werkzeug.datastructures import FileStorage
 from flask_login import login_required, current_user
 import uuid
 from .booking import generate_booking_reference
@@ -52,15 +53,19 @@ def create():
         return redirect(url_for('event.create'))
     return render_template('events/create.html', form=form)
 
-# Function to handle file uploads
 def check_upload_file(form):
     fp = form.image.data
-    filename = fp.filename
-    BASE_PATH = os.path.dirname(__file__)
-    upload_path = os.path.join(BASE_PATH, 'static/image', secure_filename(filename))
-    db_upload_path = '/static/image/' + secure_filename(filename)
-    fp.save(upload_path)
-    return db_upload_path
+    # Check if fp is a FileStorage object and has a filename
+    if isinstance(fp, FileStorage) and fp.filename:
+        filename = secure_filename(fp.filename)
+        BASE_PATH = os.path.dirname(__file__)
+        upload_path = os.path.join(BASE_PATH, 'static/image', secure_filename(filename))
+        db_upload_path = '/static/image/' + secure_filename(filename)
+        fp.save(upload_path)
+        return db_upload_path
+    else:
+        # Handle case where no file is uploaded (return None or a default path)
+        return None
 
 # Add a comment to an event
 @bp.route('/<id>/comment', methods=['GET', 'POST'])
@@ -118,3 +123,28 @@ def booking_history():
     user_events = current_user.events_created.all()
     
     return render_template('events/history.html', user_bookings=user_bookings, user_events=user_events)
+
+@bp.route('/edit_event/<int:event_id>', methods=['GET', 'POST'])
+@login_required
+def edit_event(event_id):
+    event = Event.query.get_or_404(event_id)
+
+
+    form = EditEventForm(obj=event)  # Prefill form with event data
+
+    if form.validate_on_submit():
+        # Update event details
+        event.name = form.name.data
+        event.description = form.description.data
+        event.date = form.date.data
+        event.venue = form.venue.data
+
+        # Handle file upload if there's a new image
+        if form.image.data:
+            event.image = check_upload_file(form)
+
+        db.session.commit()
+        flash('Your event has been updated!', 'success')
+        return redirect(url_for('event.show', id=event_id))
+
+    return render_template('events/edit.html', form=form)
