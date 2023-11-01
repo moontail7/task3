@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
+from .errorhandling import error_404, error_500, error_502, error_503
 
 # Initialize SQAlchemy
 db = SQLAlchemy()
