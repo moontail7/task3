@@ -271,7 +271,7 @@ body {
 
   .ticket-button {
       background-color: #ffffff; 
-      border: 5px solid #000000;
+      border: 2px solid #eeeeee;
       color: rgb(0, 0, 0); 
       padding: 15px 32px; 
       text-align: center; 
