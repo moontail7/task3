@@ -148,3 +148,17 @@ def edit_event(event_id):
         return redirect(url_for('event.show', id=event_id))
 
     return render_template('events/edit.html', form=form)
+
+@bp.route('/delete_event/<int:event_id>', methods=['POST'])
+@login_required
+def delete_event(event_id):
+    event = Event.query.get_or_404(event_id)
+
+    # Add any required checks before deletion
+    # For example, check if the current user is authorized to delete the event
+
+    db.session.delete(event)
+    db.session.commit()
+
+    flash('Event has been deleted successfully.', 'success')
+    return redirect(url_for('main.index'))  # Redirect to the index or a relevant page

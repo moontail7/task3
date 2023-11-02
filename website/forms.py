@@ -10,10 +10,10 @@ ALLOWED_FILE = {'PNG', 'JPG', 'png', 'jpg', 'jpeg'}
 # Form for creating an event
 class EventForm(FlaskForm):
     STATUS_LIST = [
-        ('open', 'Open'),
-        ('inactive', 'Inactive'),
-        ('soldout', 'Sold Out'),
-        ('cancelled', 'Event Cancelled'),
+        ('Open', 'Open'),
+        ('Inactive', 'Inactive'),
+        ('Sold Out', 'Sold Out'),
+        ('Cancelled', 'Event Cancelled'),
     ]
     name = StringField('Event Name', validators=[InputRequired()])
     description = TextAreaField('Event Description', validators=[InputRequired()])
@@ -55,10 +55,10 @@ class BookingForm(FlaskForm):
 
 class EditEventForm(FlaskForm):
     STATUS_LIST = [
-        ('open', 'Open'),
-        ('inactive', 'Inactive'),
-        ('soldout', 'Sold Out'),
-        ('cancelled', 'Event Cancelled'),
+        ('Open', 'Open'),
+        ('Inactive', 'Inactive'),
+        ('Sold Out', 'Sold Out'),
+        ('Cancelled', 'Event Cancelled'),
     ]
 
     name = StringField('Event Name', validators=[InputRequired()])
