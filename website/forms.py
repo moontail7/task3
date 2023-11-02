@@ -66,5 +66,5 @@ class EditEventForm(FlaskForm):
     venue = TextAreaField('Event Venue', validators=[InputRequired()])
     date = TextAreaField('Event Date', validators=[InputRequired()])
     status = SelectField('Event Status', choices=STATUS_LIST)
-    image = FileField('Update Event Image', validators=[FileAllowed(ALLOWED_FILE, 'Images only!')])
+    image = FileField('Event Image', validators=[FileRequired(message='Image cannot be empty'), FileAllowed(ALLOWED_FILE, message='File is not supported')])
     submit = SubmitField("Update Event")

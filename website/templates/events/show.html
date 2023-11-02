@@ -5,57 +5,54 @@
 {% block content %}
 
 <div class="container mt-4">
-  <div class="row">
-      <div class="col-md-12">
-          <div class="image-container">
-            
-              <img class="align-self-start mr-3" src="{{ event.image }}">
-              </div>
-              <div class="card-body">
-                  <h2 class="card-title">{{ event.name }}</h2>
-                  <p class="card-text"><strong>Date:</strong> {{ event.date }}</p>
-                  <p class="card-text"><strong>Venue:</strong> {{ event.venue }}</p>
-                  <p class="card-text text-justify">{{ event.description }}</p>
-              </div>
-          
-      </div>
-  </div>
-
-      <!-- New Ticket Selection Section -->
-      <div class="row mt-4">
-        <div class="col-12">
-          <h2>Select Your Tickets</h2>
+    <!-- Top Row: Image and Event Details -->
+    <div class="row">
+        <!-- Image Column -->
+        <div class="col-md-6">
+            <div class="image-container">
+                <img class="img-fluid" src="{{ event.image }}" alt="{{ event.name }}">
+            </div>
         </div>
-        
 
-        <!-- Adult General Admission Ticket -->
-        <form method="POST" action="{{ url_for('event.book', id=event.id) }}">
-          {{ render_form(booking_form) }}
-      </form>
-      
-      
-      </div> 
- 
-    
-    <!-- Comments -->  
-    <div class="row">  
-      <div class="col-md-12">  
-        <h2>Comments</h1>  
-      </div>  
-    </div>  
- 
-    <div class="row border-bottom"> 
-      {{ render_form(form,"/events/{0}/comment".format(event.id)) }}
-      
-      {% for comment in event.comments %}
-      <div class="col-md-12">  
-        <b>{{ comment.user.name }}</b> @
-        <span class="text-success h5">{{ comment.created_at.strftime('%H:%M') }}</span>
-        <span class="text-muted">{{ comment.created_at.strftime('%Y-%m-%d') }}</span>
-        <p>{{ comment.text }}</p>  
-      </div> 
-      {% endfor %} 
-    </div>  
+        <!-- Event Details Column -->
+        <div class="col-md-6">
+            <div class="card-body">
+                <h2 class="card-title">{{ event.name }}</h2>
+                <p class="card-text"><strong>Date:</strong> {{ event.date }}</p>
+                <p class="card-text"><strong>Venue:</strong> {{ event.venue }}</p>
+                <p class="card-text text-justify">{{ event.description }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Row: Ticket Selection and Comments -->
+    <div class="row mt-4">
+        <!-- Ticket Selection Column -->
+        <div class="col-md-6">
+            <h2>Select Your Tickets</h2>
+            <form method="POST" action="{{ url_for('event.book', id=event.id) }}">
+                {{ render_form(booking_form) }}
+            </form>
+        </div>
+
+        <!-- Comments Column -->
+        <div class="col-md-6">
+            <h2>Comments</h2>
+            
+            <!-- Display Existing Comments -->
+            {% for comment in event.comments %}
+                <div class="mb-3"> <!-- Added margin-bottom for spacing between comments -->
+                    <b>{{ comment.user.name }}</b> @
+                    <span class="text-success h5">{{ comment.created_at.strftime('%H:%M') }}</span>
+                    <span class="text-muted">{{ comment.created_at.strftime('%Y-%m-%d') }}</span>
+                    <p>{{ comment.text }}</p>  
+                </div> 
+            {% endfor %}
+
+            <!-- Comment Entry Form -->
+            {{ render_form(form, "/events/{0}/comment".format(event.id)) }}
+        </div>
     </div> 
-    
-    {% endblock %}
+</div>
+
+{% endblock %}

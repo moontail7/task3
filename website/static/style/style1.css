@@ -154,11 +154,14 @@ body {
     display: flex; /* Enable flex layout */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-  }
-  .image-container img {
     width: 100%; /* Fill the entire container horizontally */
     height: auto; /* Fill the entire container vertically */
     object-fit: cover; /* Scale and crop the image to fill the container */
+    border: px solid white;
+    width: 100%; 
+
+    transform-origin: center; /* Ensures the scaling is centered */
+    object-fit: cover; 
   }
   
   /* Add styling for the dropdown box */
@@ -215,16 +218,13 @@ body {
   .btn-info {
     margin-top: auto; /* Push the button to the bottom */
   }
-
   .event-card h3.card-title {
     max-height: 20px;
   }
 
-
   .event-card .card-text.description {
     max-height: 20px;
   }
-
   .event-image {
     border: px solid white;
     border-top-left-radius: 12px;
