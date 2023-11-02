@@ -46,11 +46,10 @@
         <!-- Card Body -->
         <div class="card-body">
           <h3 class="card-title"><strong>{{ event.name }}</strong></h3>
-          <p class="card-text">
-          </p>
-          <p   <span class="badge {% if event.status == 'open' %}bg-success{% elif event.status == 'Cancelled' %}bg-danger{% elif event.status == 'inactive' %}bg-warning{% else %}bg-secondary{% endif %}">
+          <span class="badge {% if event.status == 'open' %}bg-success{% elif event.status == 'Cancelled' %}bg-danger{% elif event.status == 'inactive' %}bg-warning{% else %}bg-secondary{% endif %}">
             {{ event.status }}
-        </span>
+          </span>
+          <p>
           <p class="card-text">{{ event.description }}</p>
           <a href="{{ url_for('event.show', id=event.id) }}" class="btn btn-info ticket-button">BUY TICKETS</a>
         </div>

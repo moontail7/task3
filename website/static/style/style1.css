@@ -4,8 +4,7 @@ body {
   
   p {
     font-size: 14px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+
   }
   
   .nowtrending-text {
@@ -64,23 +63,13 @@ body {
     object-fit: cover; 
 }
 
-  
-  .custom-card + .custom-card {
-    margin-top: 20px;
-  }
-  
   .sold-out-button {
     background-color: #555555;
     color: white;
     font-weight: bold;
     cursor: not-allowed;
   }
-  
-  .card-title {
-    margin-top: 12px;
-    margin-bottom: 12px;
-  }
-  
+    
   .bold-text {
     font-weight: bold;
   }
@@ -127,28 +116,14 @@ body {
   .hr {
     padding: 10px;
   }
-  
-  .coloured-jumbotron {
-    background: radial-gradient(circle, #ffd651, #d21145);
-  }
-  
-  .coloured-jumbotron-2 {
-    background: radial-gradient(circle, #2b2b2b, #121212);
-  }
-  
+
   .custom-dropdown-button {
     background-color: white;
     color: black;
     border: none;
   }
   
-  .custom-footer {
-    background: radial-gradient(circle, #2b2b2b, #121212);
-    color: white;
-    padding: 10px;
-    font-family: 'Arial', sans-serif;
-  }
-  
+/* sort image */
   .image-container {
     overflow: hidden; /* Hide overflowing content */
     display: flex; /* Enable flex layout */
@@ -197,17 +172,23 @@ body {
   }
   /* jacob ccs lmao */
 
+
+  .card-title {
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  
   .event-card {
-    border: 3px solid #ececec3a; 
+    border: 3px solid #ececec05; 
     border-radius: 15px; 
-    box-shadow: 0 0 15px rgba(253, 253, 253, 0.5); 
+    box-shadow: 0 0 15px rgba(253, 253, 253, 0.26); 
     background-color: rgba(253, 252, 252, 0.8); 
     margin-bottom: 20px; 
     color: rgb(5, 5, 5);
     padding: 20px;
     display: flex;
     flex-direction: column;
-    height: 450px;
+    min-height: 450px;
   }
   .event-card .card-body {
     flex: 1;
@@ -215,16 +196,25 @@ body {
     flex-direction: column;
   }
 
-  .btn-info {
-    margin-top: auto; /* Push the button to the bottom */
-  }
+
   .event-card h3.card-title {
-    max-height: 20px;
+    height: 60px; /* Adjust as needed */
+    overflow: hidden; /* Hides any content that overflows the container */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Number of lines to show */
+    -webkit-box-orient: vertical;
+    min-height: 10px;
   }
 
-  .event-card .card-text.description {
-    max-height: 20px;
+  .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Number of lines you want to display */
+    -webkit-box-orient: vertical;
+    overflow: clip;
+    text-overflow: ellipsis;
+    max-height: 4.5em; /* Adjust based on line height and font size */
   }
+  
   .event-image {
     border: px solid white;
     border-top-left-radius: 12px;
@@ -246,7 +236,7 @@ body {
     box-shadow: 0 4px 4px rgba(255, 251, 251, 0.1);
   }
 
-  /* Custom Button & Hover for Event Details Page */
+  /* Custom Button & Hover for Event Details Page
   .custom-button {
     background-color: #f0f0f0;
     border: none;
@@ -267,13 +257,13 @@ body {
       background-color: rgb(0, 45, 224); 
       color: rgb(255, 255, 255);
       border: none;
-  }
+  } */
 
   .ticket-button {
       background-color: #ffffff; 
       border: 2px solid #eeeeee;
       color: rgb(0, 0, 0); 
-      padding: 15px 32px; 
+      /* padding: 15px 32px;  */
       text-align: center; 
       text-decoration: none;
       display: inline-block; 
