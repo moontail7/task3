@@ -27,15 +27,15 @@ def search():
 def sort():
     sort_by = request.form.get('sort_by', 'default')
 
-    if sort_by == 'open':
-        events = db.session.query(Event).filter(Event.status == 'open').order_by(Event.status).all()
-    elif sort_by == 'cancelled':
-        events = db.session.query(Event).filter(Event.status == 'cancelled').order_by(Event.status).all()
-    elif sort_by == 'soldout':
-        events = db.session.query(Event).filter(Event.status == 'soldout').order_by(Event.status).all()
-    elif sort_by == 'inactive':
-        events = db.session.query(Event).filter(Event.status == 'inactive').order_by(Event.status).all()
+    if sort_by == 'Open':
+        events = db.session.query(Event).filter(Event.status == 'Open').order_by(Event.status).all()
+    elif sort_by == 'Cancelled':
+        events = db.session.query(Event).filter(Event.status == 'Event Cancelled').order_by(Event.status).all()
+    elif sort_by == 'Sold Out':
+        events = db.session.query(Event).filter(Event.status == 'Sold Out').order_by(Event.status).all()
+    elif sort_by == 'Inactive':
+        events = db.session.query(Event).filter(Event.status == 'Inactive').order_by(Event.status).all()
     else:
-        events = db.session.query(Event).filter(Event.status == 'open').all()
+        events = db.session.query(Event).filter(Event.status == 'Open').all()
 
     return render_template('index.html', events=events, sort_by=sort_by)    
