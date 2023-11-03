@@ -207,11 +207,11 @@ body {
 
   .card-text {
     display: -webkit-box;
-    -webkit-line-clamp: 2; /
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: clip;
     text-overflow: ellipsis;
-    max-height: 4.5em; /
+    max-height: 4.5em;
   }
   
   .event-image {
