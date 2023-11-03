@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, IntegerField, StringField, PasswordField, SelectField, DecimalField
+from wtforms.fields import TextAreaField, SubmitField, IntegerField, StringField, PasswordField, SelectField
 from wtforms.validators import InputRequired, Length, Email, EqualTo, NumberRange
 from flask_wtf.file import FileRequired, FileField, FileAllowed 
 
@@ -17,9 +17,6 @@ class EventForm(FlaskForm):
     ]
     name = StringField('Event Name', validators=[InputRequired()])
     description = TextAreaField('Event Description', validators=[InputRequired()])
-    standard_ticket_price = DecimalField('Standard Ticket Price', validators=[InputRequired()], default=50.00)
-    vip_ticket_price = DecimalField('VIP Ticket Price', validators=[InputRequired()], default=100.00)
-    group_ticket_price = DecimalField('Group Ticket Price', validators=[InputRequired()], default=175.00)
     venue = TextAreaField('Event Venue', validators=[InputRequired()])
     date = TextAreaField('Event Date', validators=[InputRequired()])
     status = SelectField('Event Status', choices=STATUS_LIST)
@@ -47,9 +44,13 @@ class CommentForm(FlaskForm):
     
 # Form for buying tickets
 class BookingForm(FlaskForm):
+    TICKET_TYPES = [
+        ('standard', 'Standard Ticket'),
+        ('vip', 'VIP Ticket'),
+        ('group', 'Group Ticket'),
+    ]
     ticket_quantity = IntegerField('Number of Tickets', validators=[NumberRange(min=1, message='Please select at least 1 ticket')])
-    # Initialize ticket_type without choices here; we'll set them in the view
-    ticket_type = SelectField('Ticket Type', choices=[])
+    ticket_type = SelectField('Ticket Type', choices=TICKET_TYPES)
     submit = SubmitField('Book Tickets')
 
 class EditEventForm(FlaskForm):
@@ -62,9 +63,6 @@ class EditEventForm(FlaskForm):
 
     name = StringField('Event Name', validators=[InputRequired()])
     description = TextAreaField('Event Description', validators=[InputRequired()])
-    standard_ticket_price = DecimalField('Standard Ticket Price', validators=[InputRequired()])
-    vip_ticket_price = DecimalField('VIP Ticket Price', validators=[InputRequired()])
-    group_ticket_price = DecimalField('Group Ticket Price', validators=[InputRequired()])
     venue = TextAreaField('Event Venue', validators=[InputRequired()])
     date = TextAreaField('Event Date', validators=[InputRequired()])
     status = SelectField('Event Status', choices=STATUS_LIST)
