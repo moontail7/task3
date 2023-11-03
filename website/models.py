@@ -24,9 +24,6 @@ class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))  # Event name
     description = db.Column(db.String(200))  # Event description
-    standard_ticket_price = db.Column(db.Numeric(10, 2), nullable=False, default=50)
-    vip_ticket_price = db.Column(db.Numeric(10, 2), nullable=False, default=100)
-    group_ticket_price = db.Column(db.Numeric(10, 2), nullable=False, default=175)
     date = db.Column(db.String(200))  # Event date
     status = db.Column(db.String(200))  # Event date
     venue = db.Column(db.String(200))  # Event venue
@@ -50,15 +47,13 @@ class Booking(db.Model):
     booking_reference = db.Column(db.String(50))
     is_history = db.Column(db.Boolean, default=False)  
     event = db.relationship('Event', backref='bookings')
-    total_price = db.Column(db.Numeric(precision=10, scale=2))
 
-    def __init__(self, user_id, event_id, quantity, ticket_type, booking_reference, total_price, is_history=False):
+    def __init__(self, user_id, event_id, quantity, ticket_type, booking_reference, is_history=False):
         self.user_id = user_id
         self.event_id = event_id
         self.quantity = quantity
         self.ticket_type = ticket_type
         self.booking_reference = booking_reference
-        self.total_price = total_price  # Include this line to handle the total_price field
         self.is_history = is_history  # Set is_history to False by default for new bookings
     
         
