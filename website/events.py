@@ -109,7 +109,7 @@ def book(id):
         db.session.commit()
 
         flash(f'Your booking reference ID is {booking_reference}', 'success')
-    return redirect(url_for('event.show', id=id))
+    return redirect(url_for('event.booking_history', id=id))
 
 # events.py
 
@@ -161,4 +161,4 @@ def delete_event(event_id):
     db.session.commit()
 
     flash('Event has been deleted successfully.', 'success')
-    return redirect(url_for('main.index'))  # Redirect to the index or a relevant page
+    return redirect(url_for('event.booking_history'))  
