@@ -85,31 +85,58 @@ def comment(id):
     return redirect(url_for('event.show', id=id))
 
 # events.py
-@bp.route('/<id>/book', methods=['POST'])
+@bp.route('/<int:id>/book', methods=['POST'])
 @login_required
 def book(id):
-    event = Event.query.get(id)
-    form = BookingForm(request.form)
+    event = Event.query.get_or_404(id)  # Using get_or_404 to make sure the event exists
+    # Here, instead of using request.form directly, we instantiate the form without it
+    form = BookingForm()
 
-    if form.validate():
+    # Dynamically set the choices based on the event details
+    form.ticket_type.choices = [
+        ('standard', f'Standard Ticket - ${event.standard_ticket_price}'),
+        ('vip', f'VIP Ticket - ${event.vip_ticket_price}'),
+        ('group', f'Group Ticket - ${event.group_ticket_price} per person'),
+    ]
+
+    # We populate the form with request.form data after setting the choices
+    form.process(request.form)
+
+    if form.validate_on_submit():  # If your form validation is successful
         ticket_quantity = form.ticket_quantity.data
+        ticket_type = form.ticket_type.data
         booking_reference = generate_booking_reference(event, current_user)
-        ticket_type = form.ticket_type.data  # Get ticket_type from the form
+
+        # Determine the price based on ticket type
+        ticket_price = 0
+        if ticket_type == 'standard':
+            ticket_price = event.standard_ticket_price
+        elif ticket_type == 'vip':
+            ticket_price = event.vip_ticket_price
+        elif ticket_type == 'group':
+            ticket_price = event.group_ticket_price
 
         # Create a new Booking instance for the current booking
         booking = Booking(
             user_id=current_user.id,
             event_id=event.id,
             quantity=ticket_quantity,
-            ticket_type=ticket_type,  # Include ticket_type
+            ticket_type=ticket_type,
             booking_reference=booking_reference,
-            is_history=True  # This is not in booking history
+            total_price=ticket_price * ticket_quantity,  # Calculate total price
+            is_history=True  # Presumably, you want to start with the booking not being in history
         )
         db.session.add(booking)
         db.session.commit()
 
-        flash(f'Your booking reference ID is {booking_reference}', 'success')
-    return redirect(url_for('event.booking_history', id=id))
+        # Flash message with booking reference and price information
+        flash(f'Your booking reference ID is {booking_reference}. The total price is ${booking.total_price}.', 'success')
+        # Redirect to booking history or a confirmation page
+        return redirect(url_for('event.show', id=id))
+    else:
+        # If there is an error in form validation, you may want to flash a message and redirect
+        flash('There was an error with your booking.', 'danger')
+        return redirect(url_for('event.show', id=id))  # Redirect back to the event detail page
 
 # events.py
 
